@@ -29,7 +29,15 @@ class Pile {
         this.cards.addAll(cards);
     }
 
-    public Card getCard(Card searchCard)  {
+    // Draw from top of pile
+    public Card drawCard() {
+        if (!this.cards.isEmpty())
+            return this.cards.remove(this.cards.size()-1);
+        else
+            return null;
+    }
+    // Draw specific card if its in the hand
+    public Card drawCard(Card searchCard)  {
         //System.out.println(" getCard() value: " + searchCard.value + " suit " + searchCard.suit);
         for (Card card : cards) {
             if (card.equals(searchCard)) {
@@ -40,6 +48,24 @@ class Pile {
         }
         return null;
     }
+
+    // See if a card exists in a pile and get a reference
+    public Card findCard(Card searchCard)  {
+        //System.out.println(" getCard() value: " + searchCard.value + " suit " + searchCard.suit);
+        for (Card card : cards) {
+            if (card.equals(searchCard)) {
+                //System.out.println("Card compare " + searchCard + " " + card);
+                return card;
+            }
+        }
+        return null;
+    }
+    public Card getTopCard()  {
+        if (!this.cards.isEmpty())
+            return this.cards.get(this.cards.size()-1);
+        else
+            return null;
+    }
     public static Set<String> getSuits() {return suits; }
 
     public void printPile() {
@@ -47,16 +73,10 @@ class Pile {
         System.out.println("-----------------------------------\n");
     }
 
-    public void printTopCard() { System.out.println("Top card is: " + cards.get(0)); }
+    public void printTopCard() { System.out.println("Top card is: " + cards.get(cards.size()-1)); }
     public void shuffle() {
         System.out.println("Shuffling deck");
         Collections.shuffle(cards);
-    }
-    public Card drawCard() {
-        if (!this.cards.isEmpty())
-            return this.cards.remove(0);
-        else
-            return null;
     }
 
 }

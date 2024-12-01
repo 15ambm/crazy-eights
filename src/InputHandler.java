@@ -29,4 +29,13 @@ public class InputHandler {
         } return null;
     }
 
+    public String getWildCardInput() {
+        System.out.print("What is the new suit?: ");
+        String input = scanner.nextLine();
+        input = input.toLowerCase().trim();
+        if (Card.suits.contains(input)) return input;
+        else System.out.println("Thats not a valid suit. Please enter one of \"H\",\"D\",\"C\",\"S\"");
+        return null;
+    }
+
 }
